@@ -30,6 +30,7 @@
 		0A84D1082007A4F900D30677 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84D1072007A4F900D30677 /* libbz2.tbd */; };
 		0A84D10A2007A50100D30677 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84D1092007A50100D30677 /* libz.tbd */; };
 		0A84D10D2007A57E00D30677 /* AudioDecodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A84D10C2007A57E00D30677 /* AudioDecodeViewController.m */; };
+		0ADD01E82007D82D00C509D7 /* AudioQueuePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD01E72007D82D00C509D7 /* AudioQueuePlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,8 @@
 		0A84D1092007A50100D30677 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0A84D10B2007A57E00D30677 /* AudioDecodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioDecodeViewController.h; sourceTree = "<group>"; };
 		0A84D10C2007A57E00D30677 /* AudioDecodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioDecodeViewController.m; sourceTree = "<group>"; };
+		0ADD01E62007D82D00C509D7 /* AudioQueuePlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioQueuePlayer.h; sourceTree = "<group>"; };
+		0ADD01E72007D82D00C509D7 /* AudioQueuePlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioQueuePlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +229,8 @@
 				0A84D0612007A44700D30677 /* ViewController.m */,
 				0A84D10B2007A57E00D30677 /* AudioDecodeViewController.h */,
 				0A84D10C2007A57E00D30677 /* AudioDecodeViewController.m */,
+				0ADD01E62007D82D00C509D7 /* AudioQueuePlayer.h */,
+				0ADD01E72007D82D00C509D7 /* AudioQueuePlayer.m */,
 				0A84D0632007A44700D30677 /* Main.storyboard */,
 				0A84D0662007A44700D30677 /* Assets.xcassets */,
 				0A84D0682007A44700D30677 /* LaunchScreen.storyboard */,
@@ -520,6 +525,7 @@
 			files = (
 				0A84D0622007A44700D30677 /* ViewController.m in Sources */,
 				0A84D06D2007A44700D30677 /* main.m in Sources */,
+				0ADD01E82007D82D00C509D7 /* AudioQueuePlayer.m in Sources */,
 				0A84D05F2007A44700D30677 /* AppDelegate.m in Sources */,
 				0A84D10D2007A57E00D30677 /* AudioDecodeViewController.m in Sources */,
 			);

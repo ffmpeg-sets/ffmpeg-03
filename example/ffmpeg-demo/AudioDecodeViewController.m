@@ -12,6 +12,7 @@
 #include "libavutil/avutil.h"
 #include "libavutil/imgutils.h"
 #include "libswresample/swresample.h"
+#import "AudioQueuePlayer.h"
 
 @interface AudioDecodeViewController ()
 {
@@ -21,6 +22,8 @@
     AVStream *_pVideoStream, *_pAudioStream;
     AVCodecContext *_pVideoCodecContext, *_pAudioCodecContext;
     int _videoCodecOpenResult, _audioCodecOpenResult;
+    
+    AudioQueuePlayer *_audioQueuePlayer;
 }
 @end
 
@@ -45,6 +48,8 @@
     [startButton setTitle:@"start" forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(startButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:startButton];
+    
+    _audioQueuePlayer = [[AudioQueuePlayer alloc] init];
 }
 
 - (void)startButtonEvent:(id)sender {
@@ -145,6 +150,8 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *writablePath = [documentsDirectory stringByAppendingPathComponent:@"out.pcm"];
         
+        unlink([writablePath UTF8String]);
+        
         FILE *fp_pcm = fopen([writablePath UTF8String], "wb");
 
         
@@ -165,10 +172,10 @@
         
         // 输出的声道布局
         uint64_t out_channel_layout = AV_CH_LAYOUT_MONO; // 单声道
-        // 输出的采样格式 16bit, PCM
+        // 输出的采样格式
         enum AVSampleFormat out_sample_fmt = AV_SAMPLE_FMT_S16; // 16 bit
         // 输出的采样率
-        int out_sample_rate = 44100; // 44100 HZ
+        int out_sample_rate = 48000; // 48000 HZ
         
         swr_alloc_set_opts(swrContext, out_channel_layout, out_sample_fmt, out_sample_rate, in_channel_layout, in_sample_fmt, in_sample_rate, 0, NULL);
         
@@ -196,8 +203,10 @@
                 // 获取 sample 的 size
                 int out_buffer_size = av_samples_get_buffer_size(NULL, out_channel_nb, pAudioFrame->nb_samples, out_sample_fmt, 1);
                 
-                //写入文件进行测试
+                // 写入文件进行测试
                 fwrite(out_buffer, 1, out_buffer_size, fp_pcm);
+                
+                [_audioQueuePlayer playWithPCMData:out_buffer length:out_buffer_size];
             }
         }
         av_packet_unref(pAudioPacket);
