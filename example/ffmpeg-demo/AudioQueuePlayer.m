@@ -60,12 +60,12 @@
             
             osState = AudioQueueAllocateBuffer(audioQueue, MIN_SIZE_PER_FRAME, &audioQueueBuffers[i]);
             
-            printf("第 %d 个AudioQueueAllocateBuffer 初始化结果 %d (0表示成功)", i + 1, osState);
+            NSLog(@"第 %d 个AudioQueueAllocateBuffer 初始化结果 %d (0表示成功)", i + 1, osState);
         }
         
         osState = AudioQueueStart(audioQueue, NULL);
         if (osState != noErr) {
-            printf("AudioQueueStart Error");
+            NSLog(@"AudioQueueStart Error");
         }
     }
     return self;
@@ -101,7 +101,7 @@
     //
     AudioQueueEnqueueBuffer(audioQueue, audioQueueBuffers[i], 0, NULL);
     
-    printf("本次播放数据大小: %d", length);
+    NSLog(@"本次播放数据大小: %d", length);
     [sysnLock unlock];
 }
 
